@@ -13,6 +13,18 @@ By the way, this project is COMPLETELY open source, no code locked, you can edit
 
 An example of a game made in this game engine is Quarter-Life 1 being made by, well, me.
 
+# How to compile the code
+- Make sure you have MonoGame installed into your Visual Studio 2022 (Use vs2022, or else it might not work.).
+- Clone the master branch.
+- Open the cloned project in Visual Studio 2022.
+- Make your changes to the code.
+- Build the DimensionalSourceEngine project.
+- Go to the DimensionalSourceEngine project root, then go to bin > Debug > net6.0-windows.
+- Copy the "ql1" folder from the solution root over to the game folder. (ql1 is basically the whole Quarter-Life 1 game, also known as the root of this game engine.)
+- Run "ql1.exe".
+- Done!
+- (OPTIONAL) Make it fullscreen by going to ql1 > cfg > game_settings.cfg and editing the "fullScreen' value to be true.
+
 # About Quarter-Life 1
 This is an example of a game made in this game engine.
 As you can clearly see in the title, this game is inspired by Half-Life 1, made in GoldSrc by Valve.
