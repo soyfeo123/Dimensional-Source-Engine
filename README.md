@@ -24,6 +24,7 @@ An example of a game made in this game engine is Quarter-Life 1 being made by, w
 - Run "ql1.exe".
 - Done!
 - (OPTIONAL) Make it fullscreen by going to ql1 > cfg > game_settings.cfg and editing the "fullScreen' value to be true.
+Check the Wiki for more information.
 
 # About Quarter-Life 1
 This is an example of a game made in this game engine.
