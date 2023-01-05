@@ -33,7 +33,7 @@ namespace DimensionalSourceEngine
                 buttonFont = ClientScheme.GetSpriteFontWithName(game.clientScheme, "Buttons", game, device);
                 gameTitleFont = ClientScheme.GetSpriteFontWithName(game.clientScheme, "GameTitle", game, device);
                 loadedMenu = JsonConvert.DeserializeObject<SGUIMenu>(File.ReadAllText(Path.Combine(game.fullPath, "resource", "gamemenu.res")));
-                Vector2 currentDrawingPos = new Vector2(game_.clientScheme.Spacing.MainMenuBtnXMargin, (Game1.Instance.GraphicsDevice.Viewport.Height / 2) - 60 + ClientScheme.GetFontWithName(game_.clientScheme, "GameTitle").FontSize + 3);
+                Vector2 currentDrawingPos = new Vector2(game_.clientScheme.Spacing.MainMenuBtnXMargin, (Game1.Instance.GraphicsDevice.Viewport.Height / 2) - 60 + ClientScheme.GetFontWithName(game_.clientScheme, "GameTitle").FontSize + game_.clientScheme.Spacing.MainMenuBtnYMargin);
 
                 for (int currentIndex = 0; currentIndex < loadedMenu.i.Length; currentIndex++)
                 {
@@ -47,7 +47,7 @@ namespace DimensionalSourceEngine
                         }
                     }
 
-                    currentDrawingPos.Y += ClientScheme.GetFontWithName(game_.clientScheme, "Buttons").FontSize + 2;
+                    currentDrawingPos.Y += ClientScheme.GetFontWithName(game_.clientScheme, "Buttons").FontSize + game_.clientScheme.Spacing.MainMenuBtnYMargin;
                 }
             }
             

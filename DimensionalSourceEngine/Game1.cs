@@ -44,33 +44,56 @@ namespace DimensionalSourceEngine
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            
-            string[] folders = Directory.GetDirectories(Path.Combine(AppDomain.CurrentDomain.BaseDirectory));
-            foreach(string folder in folders)
+            try
             {
-                if (File.Exists(Path.Combine(folder, "gameinfo.txt")))
+                DSEDebug.InitDebug();
+                string[] folders = Directory.GetDirectories(Path.Combine(AppDomain.CurrentDomain.BaseDirectory));
+                FileStream streamForVideo = File.Open(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Content", "intro.wmv"), FileMode.Open);
+                bool hasShownBadFile = false;
+                if (streamForVideo.Length != 266910)
                 {
-                    LoadedGame game = new LoadedGame();
-                    game.info = JsonConvert.DeserializeObject<GameInfo>(File.ReadAllText(Path.Combine(folder, "gameinfo.txt")));
-                    game.fullPath = folder;
-                    
-                    if (game.info.mainGame == true)
-                    {
-                        //DSEDebug.Log(Path.Combine(folder, @"resource\clientscheme.res"));
-                        Debug.WriteLine(Path.Combine(folder, @"resource\clientscheme.res"));
-                        Debug.WriteLine(File.ReadAllText(Path.Combine(folder, @"resource\clientscheme.res")));
-                        loadedGameSettings = JsonConvert.DeserializeObject<GameSettings>(File.ReadAllText(Path.Combine(folder, "cfg", "game_settings.cfg")));
-                        Window.Title = game.info.title;
-                        Fullscreen(loadedGameSettings.fullScreen);
-
-                        game.clientScheme = JsonConvert.DeserializeObject<ClientScheme>(File.ReadAllText(Path.Combine(folder, "resource", "clientscheme.res")));
-                        game.loadedGUI = new GUI_Stuff(GraphicsDevice, game);
-
-                    }
-                    game.soundSystem = new DSESoundSystem(game);
-                    game.soundSystem.LoadAllSounds();
-                    games.Add(game);
+                    hasShownBadFile = true;
+                    System.Windows.Forms.MessageBox.Show("Intro change detected, not launching. (intro.wmv in Content)", "File change detected", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error) ;
                 }
+                streamForVideo.Close();
+                if (hasShownBadFile)
+                {
+                    Exit();
+                }
+                foreach (string folder in folders)
+                {
+                    if (File.Exists(Path.Combine(folder, "gameinfo.txt")))
+                    {
+                        
+                        LoadedGame game = new LoadedGame();
+                        game.info = JsonConvert.DeserializeObject<GameInfo>(File.ReadAllText(Path.Combine(folder, "gameinfo.txt")));
+                        game.fullPath = folder;
+
+                        if (game.info.mainGame == true)
+                        {
+                            //DSEDebug.Log(Path.Combine(folder, @"resource\clientscheme.res"));
+                            Debug.WriteLine(Path.Combine(folder, @"resource\clientscheme.res"));
+                            Debug.WriteLine(File.ReadAllText(Path.Combine(folder, @"resource\clientscheme.res")));
+                            loadedGameSettings = JsonConvert.DeserializeObject<GameSettings>(File.ReadAllText(Path.Combine(folder, "cfg", "game_settings.cfg")));
+                            Window.Title = game.info.title;
+                            Fullscreen(loadedGameSettings.fullScreen);
+
+                            game.clientScheme = JsonConvert.DeserializeObject<ClientScheme>(File.ReadAllText(Path.Combine(folder, "resource", "clientscheme.res")));
+                            game.loadedGUI = new GUI_Stuff(GraphicsDevice, game);
+
+                        }
+                        game.soundSystem = new DSESoundSystem(game);
+                        game.soundSystem.LoadAllSounds();
+                        
+                        games.Add(game);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                
+                System.Windows.Forms.MessageBox.Show("An error has occured while initializing Dimensional Source Engine and will now close.\nDetails:\n"+ex.ToString(), "Error!", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                Exit();
             }
             
             base.Initialize();

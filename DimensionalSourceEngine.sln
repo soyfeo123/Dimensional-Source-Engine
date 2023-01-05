@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DimensionalSourceEngine", "DimensionalSourceEngine\DimensionalSourceEngine.csproj", "{70D75C70-CB01-4E45-A396-FA5F14A7D569}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DimensionalSourceEngine", "DimensionalSourceEngine\DimensionalSourceEngine.csproj", "{70D75C70-CB01-4E45-A396-FA5F14A7D569}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DimensionalSourceSDK", "DimensionalSourceSDK\DimensionalSourceSDK.csproj", "{BD29581E-CE0E-48A3-BA2A-7D149F1C3A40}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{70D75C70-CB01-4E45-A396-FA5F14A7D569}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70D75C70-CB01-4E45-A396-FA5F14A7D569}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70D75C70-CB01-4E45-A396-FA5F14A7D569}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD29581E-CE0E-48A3-BA2A-7D149F1C3A40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD29581E-CE0E-48A3-BA2A-7D149F1C3A40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD29581E-CE0E-48A3-BA2A-7D149F1C3A40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD29581E-CE0E-48A3-BA2A-7D149F1C3A40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

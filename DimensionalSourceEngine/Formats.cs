@@ -29,23 +29,33 @@ namespace DimensionalSourceEngine
         public int size;
         bool hasHoverSoundBeenMade = false;
         bool hasClickSoundBeenMade = false;
+        bool hasHoverMouseCursorDisable = false;
 
         public bool Hover(LoadedGame game, bool doSound = true)
         {
             Microsoft.Xna.Framework.Input.MouseState mouseState = Microsoft.Xna.Framework.Input.Mouse.GetState();
-            if (mouseState.Y > y && mouseState.Y < y + size && mouseState.X > 30 && mouseState.X < 200)
+            if (mouseState.Y > y && mouseState.Y < y + size && mouseState.X > game.clientScheme.Spacing.MainMenuBtnXMargin && mouseState.X < 300)
             {
                 if (!hasHoverSoundBeenMade && doSound)
                 {
                     game.soundSystem.PlaySound("ui_hover.wav");
                     hasHoverSoundBeenMade = true;
-                    
-                }
-                return true;
+                    if (game.clientScheme.Settings.ShowHandCursorOnBtnHover)
+                    {
+                        hasHoverMouseCursorDisable = false;
+                        Microsoft.Xna.Framework.Input.Mouse.SetCursor(Microsoft.Xna.Framework.Input.MouseCursor.Hand);
+                    }
+                    }
+                    return true;
             }
             else
             {
                 hasHoverSoundBeenMade = false;
+                if (!hasHoverMouseCursorDisable)
+                {
+                    Microsoft.Xna.Framework.Input.Mouse.SetCursor(Microsoft.Xna.Framework.Input.MouseCursor.Arrow);
+                    hasHoverMouseCursorDisable = true;
+                }
                 return false;
                 
             }
@@ -93,6 +103,11 @@ namespace DimensionalSourceEngine
         public DSESoundSystem soundSystem;
     }
 
+    public class SchemeSettings
+    {
+        public bool ShowHandCursorOnBtnHover;
+    }
+
     public class SchemeColor
     {
         public string Name;
@@ -104,6 +119,7 @@ namespace DimensionalSourceEngine
     public class SchemeSpacing
     {
         public float MainMenuBtnXMargin;
+        public float MainMenuBtnYMargin;
     }
 
     public class ClientScheme
@@ -111,6 +127,7 @@ namespace DimensionalSourceEngine
         public SchemeFont[] Fonts;
         public SchemeColor[] Colors;
         public SchemeSpacing Spacing;
+        public SchemeSettings Settings;
 
         public static SchemeFont GetFontWithName(ClientScheme scheme, string name)
         {

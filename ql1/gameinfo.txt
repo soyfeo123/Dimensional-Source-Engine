@@ -1,0 +1,6 @@
+{
+	"title": "QUARTER-LIFE 1",
+	"icon": "",
+	"extension": false,
+	"mainGame": true
+}
