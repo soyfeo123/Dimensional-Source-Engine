@@ -89,6 +89,7 @@ namespace DimensionalSourceEngine
     public class GameInfo
     {
         public string title;
+        public string mainmenu_title;
         public string icon;
         public bool extension;
         public bool mainGame;

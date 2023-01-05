@@ -58,10 +58,13 @@ namespace DimensionalSourceEngine
             
             int currentIndex = 0;
 
-            Game1.Instance._spriteBatch.DrawString(gameTitleFont, game_.info.title, new Vector2(game_.clientScheme.Spacing.MainMenuBtnXMargin, (Game1.Instance.GraphicsDevice.Viewport.Height / 2) - 60), Color.White);
-            
-            
-                foreach (SGUIMenuItems item in loadedMenu.i)
+            if (string.IsNullOrEmpty(game_.info.mainmenu_title)) 
+                Game1.Instance._spriteBatch.DrawString(gameTitleFont, game_.info.title, new Vector2(game_.clientScheme.Spacing.MainMenuBtnXMargin, (Game1.Instance.GraphicsDevice.Viewport.Height / 2) - 60), Color.White);
+            else
+                Game1.Instance._spriteBatch.DrawString(gameTitleFont, game_.info.mainmenu_title.Replace(']', '\\'), new Vector2(game_.clientScheme.Spacing.MainMenuBtnXMargin, (Game1.Instance.GraphicsDevice.Viewport.Height / 2) - 60), Color.White);
+
+
+            foreach (SGUIMenuItems item in loadedMenu.i)
                 {
                     
                     
