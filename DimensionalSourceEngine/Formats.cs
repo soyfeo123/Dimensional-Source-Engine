@@ -31,6 +31,12 @@ namespace DimensionalSourceEngine
         bool hasClickSoundBeenMade = false;
         bool hasHoverMouseCursorDisable = false;
 
+        /// <summary>
+        /// Detects if the button is being hovered or not.
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="doSound"></param>
+        /// <returns></returns>
         public bool Hover(LoadedGame game, bool doSound = true)
         {
             Microsoft.Xna.Framework.Input.MouseState mouseState = Microsoft.Xna.Framework.Input.Mouse.GetState();
@@ -61,6 +67,12 @@ namespace DimensionalSourceEngine
             }
         }
 
+        /// <summary>
+        /// Detects if the mouse is clicking on the button or not.
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="doSound"></param>
+        /// <returns></returns>
         public bool Click(LoadedGame game, bool doSound = true)
         {
             bool click = Hover(game, false) && Microsoft.Xna.Framework.Input.Mouse.GetState().LeftButton == Microsoft.Xna.Framework.Input.ButtonState.Pressed;
