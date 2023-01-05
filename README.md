@@ -26,6 +26,9 @@ An example of a game made in this game engine is Quarter-Life 1 being made by, w
 - (OPTIONAL) Make it fullscreen by going to ql1 > cfg > game_settings.cfg and editing the "fullScreen' value to be true.
 Check the Wiki for more information.
 
+### ON PUBLISH
+Instead of uploading the files inside your bin/Debug folder, publish it using the publish tool (Build > Publish selected).
+
 # About Quarter-Life 1
 This is an example of a game made in this game engine.
 As you can clearly see in the title, this game is inspired by Half-Life 1, made in GoldSrc by Valve.
