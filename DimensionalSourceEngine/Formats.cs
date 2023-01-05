@@ -96,6 +96,7 @@ namespace DimensionalSourceEngine
     public class SGUIMenu
     {
         public SGUIMenuItems[] i;
+        public string id;
     }
 
     public class GameInfo

@@ -32,6 +32,7 @@ namespace DimensionalSourceEngine
         public Video introVideo;
         bool sC = false;
         public GameSettings loadedGameSettings;
+        public bool fullscreen;
 
         public Game1()
         {
@@ -115,6 +116,7 @@ namespace DimensionalSourceEngine
                 _graphics.PreferredBackBufferHeight = 480;
             }
             _graphics.ApplyChanges();
+            fullscreen = fs;
         }
 
         LoadedGame GetMainGame()
@@ -139,6 +141,7 @@ namespace DimensionalSourceEngine
 
         void Start()
         {
+            IsMouseVisible = false;
             videoPlayer.Play(introVideo);
             currentState = GameState.GameIntro;
         }
@@ -157,6 +160,11 @@ namespace DimensionalSourceEngine
             {
                 sC = true;
                 Start();
+            }
+
+            if(currentState == GameState.GameIntro && Keyboard.GetState().GetPressedKeys().Length > 0)
+            {
+                videoPlayer.Stop();
             }
         }
 
@@ -188,6 +196,7 @@ namespace DimensionalSourceEngine
                     else
                     {
                         currentState = GameState.MainMenu;
+                        IsMouseVisible = true;
                         GetMainGame().soundSystem.PlaySound("menu_background.wav");
                     }
                     break;
