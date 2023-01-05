@@ -72,7 +72,7 @@ namespace DimensionalSourceEngine
 
         public void DrawMainMenu()
         {
-            
+            Game1.Instance._spriteBatch.Draw(game_.materialManager.GetMaterial("mainmenu_background_1").texture, new Rectangle(0, 0, Game1.Instance.GraphicsDevice.Viewport.Width, Game1.Instance.GraphicsDevice.Viewport.Height), Color.White);
 
             if (string.IsNullOrEmpty(game_.info.mainmenu_title)) 
                 Game1.Instance._spriteBatch.DrawString(gameTitleFont, game_.info.title, new Vector2(game_.clientScheme.Spacing.MainMenuBtnXMargin, (Game1.Instance.GraphicsDevice.Viewport.Height / 2) - 60), Color.White);

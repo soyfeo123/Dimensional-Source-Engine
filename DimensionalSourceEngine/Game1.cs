@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Audio;
 using System;
 using Microsoft.Xna.Framework.Media;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace DimensionalSourceEngine
 {
@@ -44,6 +45,8 @@ namespace DimensionalSourceEngine
 
         protected override void Initialize()
         {
+            Debug.WriteLine(Assembly.GetEntryAssembly().Location);
+
             // TODO: Add your initialization logic here
             try
             {
@@ -81,10 +84,13 @@ namespace DimensionalSourceEngine
 
                             game.clientScheme = JsonConvert.DeserializeObject<ClientScheme>(File.ReadAllText(Path.Combine(folder, "resource", "clientscheme.res")));
                             game.loadedGUI = new GUI_Stuff(GraphicsDevice, game);
+                            game.materialManager = new DSEMaterialManager(game, GraphicsDevice);
 
                         }
                         game.soundSystem = new DSESoundSystem(game);
                         game.soundSystem.LoadAllSounds();
+
+                        
                         
                         games.Add(game);
                     }

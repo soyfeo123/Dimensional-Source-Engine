@@ -115,6 +115,7 @@ namespace DimensionalSourceEngine
         public string fullPath;
         public ClientScheme clientScheme;
         public DSESoundSystem soundSystem;
+        public DSEMaterialManager materialManager;
     }
 
     public class SchemeSettings

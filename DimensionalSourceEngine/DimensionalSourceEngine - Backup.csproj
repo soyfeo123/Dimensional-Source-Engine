@@ -18,6 +18,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="PrettyBin" Version="1.1.0" />
     <PackageReference Include="SpriteFontPlus" Version="0.9.2" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Settings.Designer.cs">
@@ -26,32 +27,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
   </ItemGroup>
-  <PropertyGroup>
-    <BeautySharedRuntimeMode>False</BeautySharedRuntimeMode>
-    <!-- beauty into sub-directory, default is libs, quote with "" if contains space  -->
-    <BeautyLibsDir Condition="$(BeautySharedRuntimeMode) == 'True'">../bin</BeautyLibsDir>
-    <BeautyLibsDir Condition="$(BeautySharedRuntimeMode) != 'True'">./bin</BeautyLibsDir>
-    <!-- dlls that you don't want to be moved or can not be moved -->
-    <!-- <BeautyExcludes>dll1.dll;lib*;...</BeautyExcludes> -->
-    <!-- dlls that end users never needed, so hide them -->
-    <!-- <BeautyHiddens>hostfxr;hostpolicy;*.deps.json;*.runtimeconfig*.json</BeautyHiddens> -->
-    <!-- set to True if you want to disable -->
-    <DisableBeauty>False</DisableBeauty>
-    <!-- set to False if you want to beauty on build -->
-    <BeautyOnPublishOnly>false</BeautyOnPublishOnly>
-    <!-- set to True if you want to allow 3rd debuggers(like dnSpy) debugs the app -->
-    <BeautyEnableDebugging>False</BeautyEnableDebugging>
-    <!-- the patch can reduce the file count -->
-    <!-- set to False if you want to disable -->
-    <!-- SCD Mode Feature Only -->
-    <BeautyUsePatch>True</BeautyUsePatch>
-    <!-- <BeautyAfterTasks></BeautyAfterTasks> -->
-    <!-- valid values: Error|Detail|Info -->
-    <BeautyLogLevel>Info</BeautyLogLevel>
-    <!-- set to a repo mirror if you have troble in connecting github -->
-    <!-- <BeautyGitCDN>https://gitee.com/liesauer/HostFXRPatcher</BeautyGitCDN> -->
-    <!-- <BeautyGitTree>master</BeautyGitTree> -->
-  </PropertyGroup>
   <ItemGroup>
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -61,5 +36,8 @@
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
     <Message Text="Restoring dotnet tools" Importance="High" />
     <Exec Command="dotnet tool restore" />
+  </Target>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="ROBOCOPY &quot;$(TargetDir) &quot; &quot;$(TargetDir)bin\ &quot; /XF *.exe *.config *.manifest ql1.dll ql1.deps.json ql1.runtimeconfig.json /XD bin logs data ql1 Content runtimes /E /IS /MOVE&#xD;&#xA;if %25errorlevel%25 leq 4 exit 0 else exit %25errorlevel%25" />
   </Target>
 </Project>
