@@ -1,3 +1,14 @@
+# The Future of DSE
+DSE's development state is...
+
+unknown.
+
+It is not actively being worked on.
+
+Consider this as cancelled.
+
+It may get updates here and there, but my focus will mostly shift onto Pal3D, a new 3D game engine I'm making. I will upload the Github Link through here later.
+
 # Dimensional-Source-Engine
 Dimensional Source Engine is an open source game engine made with C#.
 DSE is a project, made out of boredom, using a framework called 'MonoGame".
